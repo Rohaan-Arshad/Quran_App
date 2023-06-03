@@ -272,6 +272,10 @@ public class MainActivity extends AppCompatActivity {
                 6336,
                 6342,
         };
+        if(surahNumber == 114)
+        {
+            return 6349;
+        }
         return SSP[surahNumber];
     }
 
