@@ -2,11 +2,13 @@ package com.example.quranapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -133,9 +135,10 @@ public class MainActivity extends AppCompatActivity {
         };
         list = findViewById(R.id.listV);
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,urduSurahNames);
         list.setAdapter(adapter);
+
+        Intent intent = new Intent(this,MainActivity2.class);
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -143,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
                 int start_ayat = getSurahStart(i);
                 int end_ayat =  getSurahStart(i+1);
                 String name = getSurahName(i);
+
+                intent.putExtra("Start", start_ayat); // String data
+                intent.putExtra("End", end_ayat); // Integer data
+                intent.putExtra("Name", name);
+
+                startActivity(intent);
             }
         });
     }
