@@ -6409,9 +6409,9 @@ public class MainActivity2 extends AppCompatActivity {
                 if (co >= start && co <= end-1) {
                     String ne = QuranArabicText[co-1];
                     t.setText(ne);
-                    t.setTextSize(20);
+                    t.setTextSize(24);
                 } else {
-                    t.setText("آیت نمبر درست دالو");
+                    t.setText("آیت نمبر درست ڈالو");
                 }
             }
         });
