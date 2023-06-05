@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -6385,12 +6386,12 @@ public class MainActivity2 extends AppCompatActivity {
         int end = receivedIntent.getIntExtra("End", 0);
         String surahName = receivedIntent.getStringExtra("Name");
 
-        int s = end-1;
-        search.setHint(" آیت نمبر " +start +  "  تا " + s +" ڈالو ");
+        int set = (end-start)  - 1 ; // yahan pa
 
         textViewName.setText("سورت " + surahName );
 
         TextView t = new TextView(MainActivity2.this);
+
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = start - 1; i < end-1; i++) {
@@ -6401,17 +6402,25 @@ public class MainActivity2 extends AppCompatActivity {
         t.setTextSize(20);
         linear.addView(t);
 
+        search.setHint(" آیت نمبر " + " 1 " +  "  تا " + set +" ڈالو ");
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String w = search.getText().toString();
-                int co = Integer.parseInt(w);
-                if (co >= start && co <= end-1) {
-                    String ne = QuranArabicText[co-1];
-                    t.setText(ne);
-                    t.setTextSize(24);
+                if (w.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "مہربانی! فَرما کر آیت نمبر ڈالو", Toast.LENGTH_SHORT).show();
                 } else {
-                    t.setText("آیت نمبر درست ڈالو");
+                    int m = Integer.parseInt(w);
+                    int co = start + m - 1;
+
+                    if (co >= start && co < end - 1) {
+                        String ne = QuranArabicText[co];
+                        t.setText(ne);
+                        t.setTextSize(24);
+                    } else {
+                        t.setText("آیت نمبر درست ڈالو");
+                    }
                 }
             }
         });

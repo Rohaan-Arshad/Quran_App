@@ -17,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ListView list;
+
         String[] urduSurahNames = {
                 "الفاتحۃ",
-                " البقرۃ",
+                "البقرۃ",
                 "آل عمران",
                 "النسآء",
                 "المآئدۃ",
@@ -133,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
                 "الفَلَق",
                 " النَّاس"
         };
+
+        for (int i = 0; i < urduSurahNames.length; i++) {
+            urduSurahNames[i] = (i + 1) + ".  " + urduSurahNames[i];
+        }
         list = findViewById(R.id.listV);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,urduSurahNames);
@@ -271,11 +276,9 @@ public class MainActivity extends AppCompatActivity {
                 6331,
                 6336,
                 6342,
+                6349,
         };
-        if(surahNumber == 114)
-        {
-            return 6349;
-        }
+
         return SSP[surahNumber];
     }
 
